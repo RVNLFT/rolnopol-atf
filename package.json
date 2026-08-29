@@ -10,10 +10,7 @@
     "test:head": "npx playwright test --head",
     "test:debug": "npx playwright test --debug",
     "test:report": "npx playwright show-report",
-    "test:report:open": "npx playwright show-report --open",
-    "test:report:html": "npx playwright show-report --reporter=html",
-    "test:report:json": "npx playwright show-report --reporter=json",
-    "test:report:json:open": "npx playwright show-report --reporter"
+    "codegen": "npx playwright codegen"
   },
   "repository": {
     "type": "git",

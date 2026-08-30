@@ -26,3 +26,14 @@ Examples:
 - chore(deps): update playwright version
 
 When making a commit, ensure the message matches the change type and clearly describes the intent of the work.
+
+## Test creation rule
+
+When creating or editing Playwright tests, always use tags from the Test Plan and Tagging System in TEST_PLAN.md.
+
+Rules:
+
+- Use the existing tags defined in the test plan before introducing new ones.
+- Include the relevant feature tag and, when applicable, an intent tag such as @smoke, @positive, or @negative.
+- If a new user flow or category requires a new tag, update TEST_PLAN.md first and keep the reference aligned with the actual suite.
+- Keep the test plan and the tagging system in sync with the repository's current coverage.

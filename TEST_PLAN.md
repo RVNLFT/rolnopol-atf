@@ -22,21 +22,21 @@ Check that the main user flows described in the official documentation work corr
 
 ## Core Test Cases
 
-1. Open home page and verify navigation is visible.
-2. Open documentation page and confirm sections are displayed.
-3. Register a new user successfully.
-4. Log in with valid credentials.
-5. Log in with invalid credentials and confirm error handling.
-6. Update profile information.
-7. Add a field, animal, and staff member.
-8. Create a farm assignment.
-9. Open the marketplace and view available offers.
-10. Create a marketplace offer.
-11. Buy an available item with valid balance.
-12. Check that the financial balance and transaction history update correctly.
-13. Open alerts page and verify alert data loads.
-14. Filter alerts by severity.
-15. Open Swagger/API docs page and confirm it loads.
+1. @smoke @navigation - Open home page and verify navigation is visible.
+2. @smoke @api-docs - Open documentation page and confirm sections are displayed.
+3. @smoke @auth @register - Register a new user successfully.
+4. @smoke @auth @login @positive - Log in with valid credentials.
+5. @auth @login @negative - Log in with invalid credentials and confirm error handling.
+6. @smoke @profile - Update profile information.
+7. @smoke @farm - Add a field, animal, and staff member.
+8. @farm - Create a farm assignment.
+9. @smoke @marketplace - Open the marketplace and view available offers.
+10. @marketplace - Create a marketplace offer.
+11. @smoke @marketplace @financial - Buy an available item with valid balance.
+12. @financial - Check that the financial balance and transaction history update correctly.
+13. @smoke @alerts - Open alerts page and verify alert data loads.
+14. @alerts - Filter alerts by severity.
+15. @smoke @api-docs - Open Swagger/API docs page and confirm it loads.
 
 ## Main User Flows
 

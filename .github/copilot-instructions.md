@@ -29,11 +29,12 @@ When making a commit, ensure the message matches the change type and clearly des
 
 ## Test creation rule
 
-When creating or editing Playwright tests, always use tags from the Test Plan and Tagging System in TEST_PLAN.md.
+When creating or editing Playwright tests, always use tags from the Test Plan and Tagging System in TEST_PLAN.md. Declare tags with Playwright's structured test metadata, using `{ tag: ["@tag"] }` as the second argument to `test()`.
 
 Rules:
 
 - Use the existing tags defined in the test plan before introducing new ones.
+- Keep tags in the `tag` metadata array instead of embedding them in the test title.
 - Include the relevant feature tag and, when applicable, an intent tag such as @smoke, @positive, or @negative.
 - If a new user flow or category requires a new tag, update TEST_PLAN.md first and keep the reference aligned with the actual suite.
 - Keep the test plan and the tagging system in sync with the repository's current coverage.

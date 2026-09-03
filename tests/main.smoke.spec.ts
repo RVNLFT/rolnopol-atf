@@ -19,6 +19,7 @@ test(
     const expectedUrl = "/register.html";
     const expectedStatus = 200;
     const expectedTitle = "Register - Rolnopol";
+    const expectedContent = "Create Your User Account";
 
     const response = await page.goto(expectedUrl, {
       waitUntil: "domcontentloaded",
@@ -26,7 +27,7 @@ test(
 
     expect(response?.status()).toBe(expectedStatus);
     await expect(page.getByTestId("register-container")).toContainText(
-      "Create Your User Account",
+      expectedContent,
     );
     await expect(page).toHaveTitle(expectedTitle);
   },
@@ -39,6 +40,7 @@ test(
     const expectedUrl = "/login.html";
     const expectedStatus = 200;
     const expectedTitle = "Login - Rolnopol";
+    const expectedContent = "Login to Your User Account";
 
     const response = await page.goto(expectedUrl, {
       waitUntil: "domcontentloaded",
@@ -46,7 +48,7 @@ test(
 
     expect(response?.status()).toBe(expectedStatus);
     await expect(page.getByTestId("login-container")).toContainText(
-      "Login to Your User Account",
+      expectedContent,
     );
     await expect(page).toHaveTitle(expectedTitle);
   },
@@ -58,15 +60,19 @@ test(
   async ({ page }) => {
     const expectedUrl = "/swagger.html";
     const expectedStatus = 200;
+    const expectedContent =
+      "API documentation for the Rolnopol service with versioning support";
 
     const response = await page.goto(expectedUrl, {
       waitUntil: "domcontentloaded",
     });
 
     expect(response?.status()).toBe(expectedStatus);
-    await expect(page.frameLocator("#swagger-frame").locator("body")).toContainText(
-      "Rolnopol",
-    );
+    await expect(
+      page
+        .frameLocator("#swagger-frame")
+        .locator(".info .description .renderedMarkdown p"),
+    ).toHaveText(expectedContent);
   },
 );
 
@@ -76,12 +82,13 @@ test(
   async ({ page }) => {
     const expectedUrl = "/docs.html";
     const expectedStatus = 200;
+    const expectedContent = "Rolnopol System Guide & API Reference";
 
     const response = await page.goto(expectedUrl, {
       waitUntil: "domcontentloaded",
     });
 
     expect(response?.status()).toBe(expectedStatus);
-    await expect(page.getByTestId("docs-sidebar-title")).toHaveText("Contents");
+    await expect(page.getByTestId("main-container")).toContainText(expectedContent);
   },
 );

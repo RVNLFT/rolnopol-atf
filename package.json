@@ -1,0 +1,31 @@
+{
+  "name": "rolnopol-atf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:list": "playwright test --reporter=list",
+    "test:ui": "playwright test --ui",
+    "test:head": "npx playwright test --head",
+    "test:debug": "npx playwright test --debug",
+    "test:report": "npx playwright show-report",
+    "codegen": "npx playwright codegen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RVNLFT/rolnopol-atf.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RVNLFT/rolnopol-atf/issues"
+  },
+  "homepage": "https://github.com/RVNLFT/rolnopol-atf#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.4.0"
+  }
+}

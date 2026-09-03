@@ -1,0 +1,11 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "cSpell.userWords": [
+    "Rolnopol"
+  ],
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "robotcode.disableExtension": true
+}

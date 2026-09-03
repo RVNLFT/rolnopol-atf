@@ -27,6 +27,10 @@ Examples:
 
 When making a commit, ensure the message matches the change type and clearly describes the intent of the work.
 
+## Playwright test framework
+
+This repository uses the Playwright Test framework from `@playwright/test`. Before creating or editing tests, review [playwright.config.ts](../playwright.config.ts) and follow its configured test directory, projects, timeouts, reporter, and shared options.
+
 ## Test creation rule
 
 When creating or editing Playwright tests, always use tags from the Test Plan and Tagging System in TEST_PLAN.md. Declare tags with Playwright's structured test metadata, using `{ tag: ["@tag"] }` as the second argument to `test()`.

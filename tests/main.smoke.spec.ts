@@ -1,4 +1,6 @@
 import { expect, test } from "@playwright/test";
+import { generateTestEmail } from "../src/helpers/email.helper";
+import { RegistrationPage } from "../src/pages/registration.page";
 
 test(
   "has title of the Rolnopol homepage",
@@ -20,19 +22,17 @@ test(
   { tag: ["@smoke", "@auth", "@register"] },
   async ({ page }) => {
     // Arrange
-    const expectedUrl = "/register.html";
+    const registrationPage = new RegistrationPage(page);
     const expectedStatus = 200;
     const expectedTitle = "Register - Rolnopol";
     const expectedContent = "Create Your User Account";
 
     // Act
-    const response = await page.goto(expectedUrl, {
-      waitUntil: "domcontentloaded",
-    });
+    const response = await registrationPage.goto("domcontentloaded");
 
     // Assert
     expect(response?.status()).toBe(expectedStatus);
-    await expect(page.getByTestId("register-container")).toContainText(
+    await expect(registrationPage.registrationContainer).toContainText(
       expectedContent,
     );
     await expect(page).toHaveTitle(expectedTitle);
@@ -44,23 +44,23 @@ test(
   { tag: ["@smoke", "@auth", "@register"] },
   async ({ page }) => {
     // Arrange
-    const email = `playwright-${Date.now()}@example.com`;
+    const registrationPage = new RegistrationPage(page);
+    const email = generateTestEmail();
 
-    await page.goto("/register.html");
-    await page.getByTestId("email-input").fill(email);
-    await page.getByTestId("password-input").fill("TestPass123");
+    await registrationPage.goto();
+    await registrationPage.fillForm(email, "TestPass123");
 
     const registrationResponse = page.waitForResponse(
       (response) =>
         response.url().endsWith("/api/v1/register") &&
         response.request().method() === "POST",
     );
-    const successBanner = expect(page.getByRole("alert")).toContainText(
+    const successBanner = expect(registrationPage.successBanner).toContainText(
       "Registration successful!",
     );
 
     // Act
-    await page.getByTestId("register-submit-btn").click();
+    await registrationPage.submit();
 
     // Assert
     const response = await registrationResponse;

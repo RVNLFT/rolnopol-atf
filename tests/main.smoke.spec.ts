@@ -34,6 +34,29 @@ test(
 );
 
 test(
+  "registers a new user successfully",
+  { tag: ["@smoke", "@auth", "@register"] },
+  async ({ page }) => {
+    const email = `playwright-${Date.now()}@example.com`;
+
+    await page.goto("/register.html");
+    await page.getByTestId("email-input").fill(email);
+    await page.getByTestId("password-input").fill("TestPass123");
+
+    const registrationResponse = page.waitForResponse(
+      (response) =>
+        response.url().endsWith("/api/v1/register") &&
+        response.request().method() === "POST",
+    );
+
+    await page.getByTestId("register-submit-btn").click();
+
+    expect((await registrationResponse).status()).toBe(201);
+    await expect(page).toHaveURL(/\/login\.html$/);
+  },
+);
+
+test(
   "login page is visible and loaded",
   { tag: ["@smoke", "@auth", "@login", "@positive"] },
   async ({ page }) => {

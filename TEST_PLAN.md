@@ -24,7 +24,7 @@ Check that the main user flows described in the official documentation work corr
 
 1. @smoke @navigation - Open home page and verify the page loads. **Automated: title check.**
 2. @smoke @api-docs - Open documentation page and confirm sections are displayed. **Automated: Contents heading check.**
-3. @smoke @auth @register - Register a new user successfully. **Planned.**
+3. @smoke @auth @register - Register a new user successfully. **Automated: account creation and login redirect checks.**
 4. @smoke @auth @login @positive - Log in with valid credentials. **Planned.**
 5. @auth @login @negative - Log in with invalid credentials and confirm error handling. **Planned.**
 6. @smoke @profile - Update profile information. **Planned.**
@@ -40,7 +40,7 @@ Check that the main user flows described in the official documentation work corr
 
 ## Automation Status
 
-- Automated checks: 5 page-load smoke tests in `tests/main.smoke.spec.ts`.
+- Automated checks: 5 page-load smoke tests and 1 registration flow in `tests/main.smoke.spec.ts`.
 - Planned checks: registration, authentication behavior, profile, farm, marketplace, financial, and alerts workflows.
 - The automated homepage check currently verifies the title; navigation visibility is not yet asserted.
 

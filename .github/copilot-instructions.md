@@ -37,6 +37,7 @@ When creating or editing Playwright tests, always use tags from the Test Plan an
 
 Rules:
 
+- Structure each Playwright test with `// Arrange`, `// Act`, and `// Assert` comments. Put setup and test data in Arrange, the primary action in Act, and expectations in Assert.
 - Use the existing tags defined in the test plan before introducing new ones.
 - Keep tags in the `tag` metadata array instead of embedding them in the test title.
 - Include the relevant feature tag and, when applicable, an intent tag such as @smoke, @positive, or @negative.

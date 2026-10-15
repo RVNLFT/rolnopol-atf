@@ -14,5 +14,6 @@ page interaction; keep test intent and verification in the test files.
 - **Do not include assertions or `expect` calls inside Page Objects.**
 - **Keep all verifications in test files only.** Tests should assert expected
   page content, navigation, and responses after performing actions.
-- Keep test setup, actions, and assertions clearly separated using the
-  `Arrange`, `Act`, and `Assert` sections.
+- Structure each Playwright test with `// Arrange`, `// Act`, and `// Assert`
+  comments. Put setup and test data in Arrange, the primary action in Act, and
+  expectations in Assert.

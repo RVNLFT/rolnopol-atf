@@ -1,16 +1,21 @@
 import { expect, test } from "@playwright/test";
 import { generateTestEmail } from "../src/helpers/email.helper";
+import { DocsPage } from "../src/pages/docs.page";
+import { HomePage } from "../src/pages/home.page";
+import { LoginPage } from "../src/pages/login.page";
 import { RegistrationPage } from "../src/pages/registration.page";
+import { SwaggerPage } from "../src/pages/swagger.page";
 
 test(
   "has title of the Rolnopol homepage",
   { tag: ["@smoke", "@navigation"] },
   async ({ page }) => {
     // Arrange
+    const homePage = new HomePage(page);
     const expectedTitle = "Rolnopol";
 
     // Act
-    await page.goto("");
+    await homePage.goto();
 
     // Assert
     await expect(page).toHaveTitle(expectedTitle);
@@ -50,20 +55,13 @@ test(
     await registrationPage.goto();
     await registrationPage.fillForm(email, "TestPass123");
 
-    const registrationResponse = page.waitForResponse(
-      (response) =>
-        response.url().endsWith("/api/v1/register") &&
-        response.request().method() === "POST",
-    );
+    // Act
     const successBanner = expect(registrationPage.successBanner).toContainText(
       "Registration successful!",
     );
-
-    // Act
-    await registrationPage.submit();
+    const response = await registrationPage.submit();
 
     // Assert
-    const response = await registrationResponse;
     await successBanner;
 
     expect(response.status()).toBe(201);
@@ -76,21 +74,17 @@ test(
   { tag: ["@smoke", "@auth", "@login", "@positive"] },
   async ({ page }) => {
     // Arrange
-    const expectedUrl = "/login.html";
+    const loginPage = new LoginPage(page);
     const expectedStatus = 200;
     const expectedTitle = "Login - Rolnopol";
     const expectedContent = "Login to Your User Account";
 
     // Act
-    const response = await page.goto(expectedUrl, {
-      waitUntil: "domcontentloaded",
-    });
+    const response = await loginPage.goto("domcontentloaded");
 
     // Assert
     expect(response?.status()).toBe(expectedStatus);
-    await expect(page.getByTestId("login-container")).toContainText(
-      expectedContent,
-    );
+    await expect(loginPage.loginContainer).toContainText(expectedContent);
     await expect(page).toHaveTitle(expectedTitle);
   },
 );
@@ -100,23 +94,17 @@ test(
   { tag: ["@smoke", "@api-docs"] },
   async ({ page }) => {
     // Arrange
-    const expectedUrl = "/swagger.html";
+    const swaggerPage = new SwaggerPage(page);
     const expectedStatus = 200;
     const expectedContent =
       "API documentation for the Rolnopol service with versioning support";
 
     // Act
-    const response = await page.goto(expectedUrl, {
-      waitUntil: "domcontentloaded",
-    });
+    const response = await swaggerPage.goto("domcontentloaded");
 
     // Assert
     expect(response?.status()).toBe(expectedStatus);
-    await expect(
-      page
-        .frameLocator("#swagger-frame")
-        .locator(".info .description .renderedMarkdown p"),
-    ).toHaveText(expectedContent);
+    await expect(swaggerPage.description).toHaveText(expectedContent);
   },
 );
 
@@ -125,17 +113,17 @@ test(
   { tag: ["@smoke", "@api-docs"] },
   async ({ page }) => {
     // Arrange
-    const expectedUrl = "/docs.html";
+    const apiDocumentationPage = new DocsPage(page);
     const expectedStatus = 200;
     const expectedContent = "Rolnopol System Guide & API Reference";
 
     // Act
-    const response = await page.goto(expectedUrl, {
-      waitUntil: "domcontentloaded",
-    });
+    const response = await apiDocumentationPage.goto("domcontentloaded");
 
     // Assert
     expect(response?.status()).toBe(expectedStatus);
-    await expect(page.getByTestId("main-container")).toContainText(expectedContent);
+    await expect(apiDocumentationPage.mainContainer).toContainText(
+      expectedContent,
+    );
   },
 );

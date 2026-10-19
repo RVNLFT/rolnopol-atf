@@ -1,11 +1,10 @@
 import { type Locator, type Page, type Response } from "@playwright/test";
 import { BasePage } from "./base.page";
+import { PAGE_URLS } from "../constants/page-urls";
 
 export class RegistrationPage extends BasePage {
-  static readonly URL = "/register.html";
-
   constructor(page: Page) {
-    super(page, RegistrationPage.URL);
+    super(page, PAGE_URLS.registration);
   }
 
   get successBanner(): Locator {

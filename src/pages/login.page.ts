@@ -1,11 +1,10 @@
 import { type Locator, type Page } from "@playwright/test";
 import { BasePage } from "./base.page";
+import { PAGE_URLS } from "../constants/page-urls";
 
 export class LoginPage extends BasePage {
-  static readonly URL = "/login.html";
-
   constructor(page: Page) {
-    super(page, LoginPage.URL);
+    super(page, PAGE_URLS.login);
   }
 
   get loginContainer(): Locator {

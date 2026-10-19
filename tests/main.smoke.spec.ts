@@ -71,7 +71,7 @@ test(
 
 test(
   "login page is visible and loaded",
-  { tag: ["@smoke", "@auth", "@login", "@positive"] },
+  { tag: ["@smoke", "@auth", "@login", "@navigation"] },
   async ({ page }) => {
     // Arrange
     const loginPage = new LoginPage(page);

@@ -12,7 +12,7 @@ Check that the main user flows described in the official documentation work corr
 - Marketplace
 - Financial balance and transactions
 - Alerts
-- API documentation page
+- Swagger UI and API documentation page
 
 ## Test Environment
 
@@ -23,25 +23,27 @@ Check that the main user flows described in the official documentation work corr
 ## Core Test Cases
 
 1. @smoke @navigation - Open home page and verify the page loads. **Automated: title check.**
-2. @smoke @api-docs - Open documentation page and confirm sections are displayed. **Automated: Contents heading check.**
-3. @smoke @auth @register - Register a new user successfully. **Automated: account creation, login redirect, and success banner checks.**
-4. @smoke @auth @login @positive - Log in with valid credentials. **Planned.**
-5. @auth @login @negative - Log in with invalid credentials and confirm error handling. **Planned.**
-6. @smoke @profile - Update profile information. **Planned.**
-7. @smoke @farm - Add a field, animal, and staff member. **Planned.**
-8. @farm - Create a farm assignment. **Planned.**
-9. @smoke @marketplace - Open the marketplace and view available offers. **Planned.**
-10. @marketplace - Create a marketplace offer. **Planned.**
-11. @smoke @marketplace @financial - Buy an available item with valid balance. **Planned.**
-12. @financial - Check that the financial balance and transaction history update correctly. **Planned.**
-13. @smoke @alerts - Open alerts page and verify alert data loads. **Planned.**
-14. @alerts - Filter alerts by severity. **Planned.**
-15. @smoke @api-docs - Open Swagger/API docs page and confirm it loads. **Automated: HTTP status and page content checks.**
+2. @smoke @api-docs - Open documentation page and confirm the page loads. **Automated: HTTP status and “Rolnopol System Guide & API Reference” heading checks.**
+3. @smoke @auth @register - Open the registration page and verify its status, content, and title. **Automated.**
+4. @smoke @auth @register - Register a new user successfully. **Automated: HTTP 201 response, success banner, and redirect to login checks.**
+5. @smoke @auth @login @navigation - Open the login page and verify its status, content, and title. **Automated.**
+6. @smoke @auth @login @positive - Log in with valid credentials. **Planned.**
+7. @auth @login @negative - Log in with invalid credentials and confirm error handling. **Planned.**
+8. @smoke @profile - Update profile information. **Planned.**
+9. @smoke @farm - Add a field, animal, and staff member. **Planned.**
+10. @farm - Create a farm assignment. **Planned.**
+11. @smoke @marketplace - Open the marketplace and view available offers. **Planned.**
+12. @marketplace - Create a marketplace offer. **Planned.**
+13. @smoke @marketplace @financial - Buy an available item with valid balance. **Planned.**
+14. @financial - Check that the financial balance and transaction history update correctly. **Planned.**
+15. @smoke @alerts - Open alerts page and verify alert data loads. **Planned.**
+16. @alerts - Filter alerts by severity. **Planned.**
+17. @smoke @api-docs - Open the Swagger page and verify its status and description. **Automated.**
 
 ## Automation Status
 
-- Automated checks: 5 page-load smoke tests and 1 registration flow in `tests/main.smoke.spec.ts`.
-- Planned checks: registration, authentication behavior, profile, farm, marketplace, financial, and alerts workflows.
+- Automated checks: 6 tests in [`tests/main.smoke.spec.ts`](./tests/main.smoke.spec.ts): the homepage, registration page, login page, Swagger page, API documentation page, and successful registration.
+- Planned checks: valid and invalid login behavior, profile, farm, marketplace, financial, and alerts workflows.
 - The automated homepage check currently verifies the title; navigation visibility is not yet asserted.
 
 ## Main User Flows
@@ -69,7 +71,7 @@ Check that the main user flows described in the official documentation work corr
 
 ## Exit Criteria
 
-- Automated smoke checks pass for the homepage, registration page, login page, Swagger page, and API documentation page.
+- Automated smoke checks pass for the homepage, registration page, login page, Swagger page, and API documentation page, and successful registration completes with the expected banner and login redirect.
 - Before this plan is considered complete, the planned authentication, profile, farm, marketplace, financial, and alerts workflows pass without errors.
 - Authentication and marketplace rules behave as expected.
 - Alerts and API documentation pages are accessible.

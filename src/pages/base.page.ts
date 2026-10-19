@@ -1,5 +1,6 @@
 import { type Page, type Response } from "@playwright/test";
 
+/** Shares navigation behavior while letting each Page Object supply its own URL. */
 export abstract class BasePage {
   constructor(
     protected readonly page: Page,

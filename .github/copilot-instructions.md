@@ -1,5 +1,8 @@
 # Repository instructions
 
+For code and test-structure conventions, read and follow
+[CODING_STANDARDS.md](../CODING_STANDARDS.md).
+
 ## Commit message convention
 
 Use Conventional Commits for all change commits in this repository.

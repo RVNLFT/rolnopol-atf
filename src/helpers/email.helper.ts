@@ -1,4 +1,6 @@
+import { randomUUID } from "node:crypto";
+
 /** Creates a unique example.com address for isolated registration tests. */
 export function generateTestEmail(): string {
-    return `playwright-${Date.now()}@example.com`;
+  return `playwright-${randomUUID()}@example.com`;
 }

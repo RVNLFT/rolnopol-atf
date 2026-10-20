@@ -56,15 +56,13 @@ test(
     await registrationPage.fillForm(email, "TestPass123");
 
     // Act
-    const successBanner = expect(registrationPage.successBanner).toContainText(
-      "Registration successful!",
-    );
     const response = await registrationPage.submit();
 
     // Assert
-    await successBanner;
-
     expect(response.status()).toBe(201);
+    await expect(registrationPage.successBanner).toContainText(
+      "Registration successful!",
+    );
     await expect(page).toHaveURL(/\/login\.html$/);
   },
 );

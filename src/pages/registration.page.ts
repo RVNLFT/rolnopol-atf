@@ -7,7 +7,15 @@ export class RegistrationPage extends BasePage {
     super(page, PAGE_URLS.registration);
   }
 
-  get successBanner(): Locator {
+  get emailInput(): Locator {
+    return this.page.getByTestId("email-input");
+  }
+
+  get passwordInput(): Locator {
+    return this.page.getByTestId("password-input");
+  }
+
+  get registrationMessage(): Locator {
     return this.page.getByRole("alert");
   }
 
@@ -16,8 +24,12 @@ export class RegistrationPage extends BasePage {
   }
 
   async fillForm(email: string, password: string): Promise<void> {
-    await this.page.getByTestId("email-input").fill(email);
-    await this.page.getByTestId("password-input").fill(password);
+    await this.emailInput.fill(email);
+    await this.passwordInput.fill(password);
+  }
+
+  async clickSubmit(): Promise<void> {
+    await this.page.getByTestId("register-submit-btn").click();
   }
 
   async submit(): Promise<Response> {
@@ -26,7 +38,7 @@ export class RegistrationPage extends BasePage {
         candidate.url().endsWith("/api/v1/register") &&
         candidate.request().method() === "POST",
     );
-    await this.page.getByTestId("register-submit-btn").click();
+    await this.clickSubmit();
     return response;
   }
 }

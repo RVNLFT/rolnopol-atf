@@ -60,7 +60,7 @@ test(
 
     // Assert
     expect(response.status()).toBe(201);
-    await expect(registrationPage.successBanner).toContainText(
+    await expect(registrationPage.registrationMessage).toContainText(
       "Registration successful!",
     );
     await expect(page).toHaveURL(/\/login\.html$/);

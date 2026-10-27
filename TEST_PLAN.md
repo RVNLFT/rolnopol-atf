@@ -40,9 +40,16 @@ Check that the main user flows described in the official documentation work corr
 16. @alerts - Filter alerts by severity. **Planned.**
 17. @smoke @api-docs - Open the Swagger page and verify its status and description. **Automated.**
 
+### Registration Negative Cases
+
+- @auth @register @negative - Submit the registration form with required fields empty. **Automated: registration is blocked and the browser displays its required-field validation message.**
+- @auth @register @negative - Enter an invalid email address. **Automated: registration is blocked and the browser displays its email-format validation message.**
+- @auth @register @negative - Enter a password shorter than the documented three-character minimum. **Automated: registration is blocked and the browser displays its minimum-length validation message.**
+- @auth @register @negative - Register with an email address that is already in use. **Automated: the API rejects the request with HTTP 409 and the page displays “User with this email already exists”.**
+
 ## Automation Status
 
-- Automated checks: 6 tests in [`tests/main.smoke.spec.ts`](./tests/main.smoke.spec.ts): the homepage, registration page, login page, Swagger page, API documentation page, and successful registration.
+- Automated checks: 10 tests in [`tests/main.smoke.spec.ts`](./tests/main.smoke.spec.ts) and [`tests/registration.negative.spec.ts`](./tests/registration.negative.spec.ts): the homepage, registration page and negative registration cases, login page, Swagger page, API documentation page, and successful registration.
 - Planned checks: valid and invalid login behavior, profile, farm, marketplace, financial, and alerts workflows.
 - The automated homepage check currently verifies the title; navigation visibility is not yet asserted.
 
